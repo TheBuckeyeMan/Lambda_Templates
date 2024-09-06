@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: template
+  main:
+    lazy-initialization: true
+    web-application-type: none  # Disable the web server Disables tomcat
+api:  
+  key: ${API_KEY}
+aws:
+  accessKeyId: ${AWS_ACCESS_KEY_ID:default_access_key}
+  secretAccessKey: ${AWS_SECRET_ACCESS_KEY:default_secret_key}
+  region: ${AWS_REGION:us-east-2}

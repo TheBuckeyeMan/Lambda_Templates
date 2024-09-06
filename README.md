@@ -18,10 +18,13 @@ AWS_REGION
 
 3. Copy the code from this repo into your new repo and fill out everything under SRC.
 
-4. VErify your branch is listed under ci.yml. After that, commit changes to github. This wil create the docker image and push to aws ecr if done properly
+4. Verify your branch is listed under ci.yml. After that, commit changes to github. This wil create the docker image and push to aws ecr if done properly
 
 5. Open up a new terminal, and provision the lambda resource(Attached to this repo).
 
 6. Test the lambda, ensure it is working as you expected - copy paste lambda url to postman use get request and it should trigger. If not, view cloudwatch logs
+What provisioning the lambda, if this api utilizes a key, ensure you pass the key when you apply the terraform code
+Ex: terraform apply -var="Api_Key=<Api Key Value>"
+
 
 

@@ -1,0 +1,55 @@
+#Ensure your repository Secrets for DOCKER_USERNAME, DOCKER_PASSWORD,are properly configured
+#This pipeline is configured for spring boot applications
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: #Add additional branches if we neeed to add additional branches
+      - main 
+      - dev
+      - test
+      - <Add Your Branch Here>
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      - name: Compiling Maven Executable Jar...
+        run: mvn package
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Configureing AWS Credentials...
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region <Your AWS_Region ex: us-east-2>
+          aws ecr get-login-password --region <Your AWS_Region ex: us-east-2> | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.<Your AWS_Region ex: us-east-2>.amazonaws.com
+
+      - name: Building Docker Image... # Edit regions if you would like to deploy to different regions
+        run: |
+          docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.<Your AWS_Region ex: us-east-2>.amazonaws.com/<Your ECR Name>:<Your Image Name in ECR> .
+        
+      - name: Pushing Docker Image to ECR...
+        run: |
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.<Your AWS_Region ex: us-east-2>.amazonaws.com/<Your ECR Name>:<Your Image Name in ECR>
+
+
+

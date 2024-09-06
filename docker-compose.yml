@@ -1,0 +1,16 @@
+#You can use docker compose if you want to test the images you build and are stored in aws ECR locally.
+#DO NOT COMMIT YOUR CODE WITH AWS ACCESS KEYS
+version: '3.8'
+
+services:
+  factservide:
+    image: <Your AWS Account ID>.dkr.ecr.<Your AWS_Region ex. us-east-2>.amazonaws.com/<Your ECR Name>:<Your Image Name in ECR>
+    container_name: factservice
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - AWS_ACCOUNT_ID=<AWS_ACCOUNT_ID>
+      - AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
+      - AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
+      - Api_Key=<Api_Key>
