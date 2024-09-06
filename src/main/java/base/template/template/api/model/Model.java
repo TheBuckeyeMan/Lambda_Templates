@@ -12,5 +12,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Model {
     //Add all values we expect to see in the response and data types - MODIFY WITH YOUR DATA
-    private String placeholder;
+    private String fact;
 }

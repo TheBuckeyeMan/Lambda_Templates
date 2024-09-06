@@ -8,7 +8,7 @@ on:
       - main 
       - dev
       - test
-      - <Add Your Branch Here>
+      - testssssss
 
 jobs:
   build-and-deploy:
@@ -40,16 +40,16 @@ jobs:
         run: |
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set default.region <Your AWS_Region ex: us-east-2>
-          aws ecr get-login-password --region <Your AWS_Region ex: us-east-2> | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.<Your AWS_Region ex: us-east-2>.amazonaws.com
+          aws configure set default.region us-east-2
+          aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com
 
       - name: Building Docker Image... # Edit regions if you would like to deploy to different regions
         run: |
-          docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.<Your AWS_Region ex: us-east-2>.amazonaws.com/<Your ECR Name>:<Your Image Name in ECR> .
+          docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/youtube-containers:test .
         
       - name: Pushing Docker Image to ECR...
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.<Your AWS_Region ex: us-east-2>.amazonaws.com/<Your ECR Name>:<Your Image Name in ECR>
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/youtube-containers:test
 
 
 

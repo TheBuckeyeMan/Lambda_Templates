@@ -27,9 +27,9 @@ public class TemplateApplication implements CommandLineRunner {
         // Trigger API call to fetch fun fact and upload to S3
         List<Model> model = templateService.getModel();
         if (model != null) {
-            String filePath = "<Name of File Created From JSON Reponse>.<File Extension>";
+            String filePath = "test.txt";
             templateService.saveToFile(model, filePath);
-            s3Service.uploadFile("<Your S3 Bucket>", "<Name of File Created From JSON Reponse>.<File Extension>", filePath);
+            s3Service.uploadFile("facts-for-yt-gpt-prompt-uniqueid-85328163", "test.txt", filePath);
             System.out.println("Data successfully fetched and saved to S3.");
         } else {
             System.out.println("No data received from API.");

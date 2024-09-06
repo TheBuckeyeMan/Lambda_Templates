@@ -28,9 +28,9 @@ public class LambdaHandler implements RequestHandler<Object, String> {
         context.getLogger().log("Fetching data from API and saving to S3...");
         List<Model> model = templateService.getModel();  // Fetch data from API
         if (model != null) {
-            String filePath = "<Name of File Created From JSON Reponse>.<File Extension>";
+            String filePath = "test.txt";
             templateService.saveToFile(model, filePath);  // Save data to file
-            s3Service.uploadFile("<Your S3 Bucket Name>", "<Name of File Created From JSON Reponse>.<File Extension>", filePath);  // Upload to S3
+            s3Service.uploadFile("facts-for-yt-gpt-prompt-uniqueid-85328163", "test.txt", filePath);  // Upload to S3
             context.getLogger().log("Data successfully fetched and saved to S3");
         } else {
             context.getLogger().log("No data received from API");

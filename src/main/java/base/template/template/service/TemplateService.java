@@ -28,7 +28,7 @@ public class TemplateService {
     //Make getter method for our model
     public List<Model> getModel(){
         log.info("Attempting to fetch model from external API...");
-        String url = "<Api Url of Externsal API We are getting data from>";
+        String url = "https://api.api-ninjas.com/v1/facts";
 
         List<Model> model = null;
         try {

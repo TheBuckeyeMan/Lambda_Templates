@@ -18,7 +18,7 @@ public class ApiKeyInterceptor implements ClientHttpRequestInterceptor{
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-        request.getHeaders().set("<Api Key Name>", apiKey);
+        request.getHeaders().set("X-Api-Key", apiKey);
         return execution.execute(request, body);
     }
 }
