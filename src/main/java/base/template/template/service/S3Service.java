@@ -8,6 +8,8 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 import java.nio.file.Paths;
 
+//The entire point of this service is to store the json response to s3 bucket
+
 @Service
 public class S3Service {
     private final S3Client s3Client;

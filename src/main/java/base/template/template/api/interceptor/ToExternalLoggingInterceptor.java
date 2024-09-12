@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 //The entire purpose of this to external logging interceptor is to log our request we are making to the external data source for debugging purposes.
+//You can remove if needed, however, this is not recomended as thease logs can help with bug fixing
 
 @Component
 public class ToExternalLoggingInterceptor implements ClientHttpRequestInterceptor {

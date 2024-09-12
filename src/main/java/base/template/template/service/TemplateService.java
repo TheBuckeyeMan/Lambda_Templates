@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.util.List;
 
 
-//Entire purpose of service is to consume the data from api
+//Entire purpose of service is to consume the data from api, write to file
+
 @Service
 @RequiredArgsConstructor
 @Slf4j

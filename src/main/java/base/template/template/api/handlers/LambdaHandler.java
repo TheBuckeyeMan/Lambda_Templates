@@ -7,6 +7,8 @@ import base.template.template.service.TemplateService;
 import base.template.template.api.model.Model;
 import java.util.List;
 
+//The lambda handler is responsable for kicking off the lambda function. Essentially, do this when the lmbda is triggered
+
 public class LambdaHandler implements RequestHandler<Object, String> {
 
     private final TemplateService templateService;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 //The Entire purpose of this interceptor is to sit between the client and this application to intercept the HTTP Request and log what the request is for debugging purposes
+//You can remove if needed, however, this is not recomended as thease logs can help with bug fixing
 
 @Component
 public class IncommingLoggingInterceptor implements ClientHttpRequestInterceptor{
